@@ -11,18 +11,21 @@ function addItem(){
     if (todotext.length <= 1){
         alert("Please gives yourself something to do!");
     }else if (todotext.length > 1){
-        //console.log("button clicked");
-        //Create div
+        
         var div_element = document.createElement("div");
         div_element.setAttribute("id", "todoItem_" + itemCount);
         div_element.setAttribute("onClick", "crossOffItem(" + itemCount + ")");
         div_element.appendChild(document.createTextNode(todotext));
-        document.getElementById('todo-item-list').appendChild(div_element);
-        //Create button
-        var button_element = document.createElement("button");
+        document.getElementById('todo-list-item').appendChild(div_element);
+       
+        var button_element = document.createElement("i");
         button_element.setAttribute("id", "button_" + itemCount);
         button_element.setAttribute("onClick", "removeItem(" + itemCount + ")");
-        button_element.appendChild(document.createTextNode("Remove"));
+        button_element.setAttribute("class", "fa fa-remove");
+        button_element.setAttribute("style", "font-size:48px;color:red");
+
+
+        //button_element.appendChild(document.createTextNode("Remove"));
         document.getElementById('todo-item-button').appendChild(button_element);
         document.getElementById('todoitem-input').value = " ";
     }

@@ -1,2 +1,114 @@
 
 /* ------------------------------------------------------------------------------------------ */
+
+.input-wrapper{
+
+    display:grid;
+    margin-top: 5em;
+    grid-gap: .2em;
+    grid-template-columns: 1.5fr 1fr 5fr 1fr 1.5fr;
+    grid-auto-rows: minmax(auto, auto);
+}
+
+.input-wrapper > div{
+    /* background: #eee; */
+    text-align: center;
+}
+
+.todoitem{
+    background: rgb(255, 255, 255);
+    width: 100%;
+    padding: 5px;
+    margin: 0;
+    font-size: large;
+    text-align: center;
+    border-radius: .4em;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;  
+}
+
+.todoitem_button {
+    background: rgb(230, 230, 230);
+    width: 100%;
+    padding: 5px;
+    margin: 0;
+    font-size: large;
+    border-radius: .4em;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box; 
+
+}
+
+/* ------------------------------------------------------------------------------------------ */
+
+.list-wrapper {
+
+    display:grid;
+    margin-top: 2.5em;
+    padding: .2em;
+    grid-gap: .2em;
+    grid-template-columns: 1.5fr 1fr 5fr 1fr 1.5fr;
+    grid-auto-rows: minmax(auto, auto);
+
+}
+
+.list-wrapper > div{
+    /* background: #eee; */
+    text-align: center;
+}
+
+/* .input-wrapper > div:nth-child(odd){
+
+    background: #ddd;
+
+} */
+
+#todo-item-list{
+
+    display:grid;
+    grid-gap: .2em;
+    grid-template-columns: 1fr;
+    grid-auto-rows: minmax(auto, auto);
+
+}
+
+#todo-item-button{
+
+    display:grid;
+    grid-gap: .2em;
+    grid-template-columns: 1fr;
+    grid-auto-rows: minmax(auto, auto);
+
+}
+
+#todo-item-list > div{
+    background: rgb(228, 228, 228);
+    width: 100%;
+    padding: 5px;
+    font-size: large;
+    /* border:#333 1px solid; */
+    border-radius: .4em;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;  
+}
+
+#todo-item-button > button{
+    background: rgb(228, 228, 228);
+    width: 100%;
+    padding: 5px;
+    border-radius: .4em;
+    /* -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box; */
+    box-sizing: border-box; 
+}

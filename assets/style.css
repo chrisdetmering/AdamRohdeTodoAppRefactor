@@ -1,3 +1,11 @@
+html{
+background-color: aqua;
+
+
+}
+
+
+
 .title-wrapper{
 
     display:grid;
@@ -102,7 +110,7 @@
 }
 
 #todo-list-item > div{
-    background: rgb(255, 253, 253);
+    background: aqua;
     width: 100%;
     padding: 5px;
     font-size: x-large;

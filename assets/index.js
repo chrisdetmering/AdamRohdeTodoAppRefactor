@@ -1,7 +1,7 @@
 
 
 let i = 1;
-var itemCount;
+let itemCount;
 
 function addItem(){
     itemCount = i++;

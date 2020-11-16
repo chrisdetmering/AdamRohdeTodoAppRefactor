@@ -1,5 +1,3 @@
-
-
 let i = 1;
 let itemCount;
 
@@ -28,6 +26,10 @@ function addItem(){
         //button_element.appendChild(document.createTextNode("Remove"));
         document.getElementById('todo-item-button').appendChild(button_element);
         document.getElementById('todoitem-input').value = " ";
+
+
+  
+
     }
 }
 
@@ -61,3 +63,26 @@ input.addEventListener("keyup", function(event) {
       addItem();
     }
   });
+
+
+
+  function saveToStorage(){
+    localStorage.setItem("todo-list-item", document.getElementById("todo-list-item").outerHTML); 
+    localStorage.setItem("todo-item-button", document.getElementById("todo-item-button").outerHTML);
+
+    console.log(document.getElementById("todo-list-item"));
+    console.log(document.getElementById("todo-item-button"));
+
+  }
+
+  function getFromStorage() {
+
+    console.log(localStorage.getItem("todo-list-item"));
+    console.log(localStorage.getItem("todo-item-button"));
+
+
+       // localStorage.getItem("todo-list-item");
+      //  localStorage.getItem("todo-list-item");
+
+
+  }

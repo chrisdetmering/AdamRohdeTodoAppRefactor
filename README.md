@@ -7,7 +7,7 @@ https://adamrohde.github.io/to-do-app/
 
 ### Image
 
-![alt text](image.jpg)
+![alt text](https://github.com/adamRohde/to-do-app/blob/master/todo_preview.jpg)
 
 
 

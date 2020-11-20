@@ -1,14 +1,7 @@
-#Todo App
+# Todo App
+Simple todo app that helps you NOT FORGET WHAT YOU NEED TO DO!
 
-
-
-### Link
-
-[title](https://www.example.com)
-
-### Image
-
-![alt text](image.jpg)
+https://adamrohde.github.io/digitalclock/
 
 
 

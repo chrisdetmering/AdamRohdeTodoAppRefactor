@@ -7,4 +7,4 @@ https://adamrohde.github.io/digitalclock/
 
 ### Image
 
-![alt text](C:\Users\adamr\Desktop\todo app.jpg)
+![alt text](todo app.jpg)

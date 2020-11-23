@@ -108,17 +108,17 @@ function retreiveLocalStorage() {
     });
 }
 
-$(document).ready(function () {
-    $("#saveLocalStorage").click(function () {
-        bLocalStorage = true;
-        localStorage.setItem("storage", bLocalStorage);
-    });
-    $("#noSave").click(function () {
-        bLocalStorage = false;
-        localStorage.setItem("storage", bLocalStorage);
-        localStorage.clear();
-    });
-});
+//----------------------------------------------------------- Event Handling -----------------------------------------------------------
+document.getElementById("saveLocalStorage").onclick = function () {
+    bLocalStorage = true;
+    localStorage.setItem("storage", bLocalStorage);
+};
+
+document.getElementById("noSave").onclick = function () {
+    bLocalStorage = false;
+    localStorage.setItem("storage", bLocalStorage);
+    localStorage.clear();
+};
 
 window.onload = function () {
     bLocalStorage = localStorage.getItem("storage");

@@ -1,5 +1,5 @@
 let i = 1;
-let itemCount = 0;
+let itemsCount = 0;
 let bLocalStorage;
 let itemsArray = [];
 let buttonsArray = [];
@@ -8,16 +8,25 @@ function addItem() {
     if (todotext.length <= 1) {
         alert("Please gives yourself something to do!");
     } else if (todotext.length > 1) {
-        addItemToVolatileMemory(todotext);
-        addItemToLocalStorageArray(todotext);
+        const itemsArray = JSON.parse(localStorage.getItem("items")) || [];
+
+        if ("null" != itemsArray) {
+            itemsCount = itemsArray.length;
+            addItemToVolatileMemory(todotext, itemsCount);
+            addItemToLocalStorageArray(todotext, itemsCount);
+        } else {
+            addItemToVolatileMemory(todotext, 0);
+            addItemToLocalStorageArray(todotext, 0);
+        }
     }
 }
-function addItemToVolatileMemory(todotext) {
+
+//----------------------------------------------------------- Volatile Memory -----------------------------------------------------------
+function addItemToVolatileMemory(todotext, itemCount) {
     //text
-    console.log("addItemToVolatileMemory " + todotext);
     let div_element = document.createElement("div");
     div_element.setAttribute("id", "todoItem_" + itemCount);
-    div_element.setAttribute("onClick", "crossOffItem(" + itemCount + ")");
+    div_element.setAttribute("onClick", "crossOffItemInVolatileMemory(" + itemCount + ")");
     div_element.appendChild(document.createTextNode(todotext));
     document.getElementById("todo-list-item").appendChild(div_element);
     itemsArray.push(div_element.outerHTML);
@@ -28,13 +37,12 @@ function addItemToVolatileMemory(todotext) {
     button_element.setAttribute("class", "fa fa-remove");
     button_element.setAttribute("style", "font-size:48px;color:red");
     document.getElementById("todo-item-button").appendChild(button_element);
-    document.getElementById("todoitem-input").value = " ";
+    document.getElementById("todoitem-input").value = "";
     buttonsArray.push(button_element.outerHTML);
     itemCount = i++;
 }
 
 function removeItemInVolatileMemory(item) {
-    console.log("removeItemInVolatileMemory " + item);
     document.getElementById("todo-list-item");
     document.getElementById("todo-item-button");
     // retrieve itewms from ls
@@ -50,12 +58,25 @@ function removeItemInVolatileMemory(item) {
     buttontoremove.remove();
 }
 
-function addItemToLocalStorageArray(text) {
+function crossOffItemInVolatileMemory(item) {
+    console.log("crossOffItemInVolatileMemory " + item);
+
+    let todotext = document.getElementById("todoItem_" + item).innerText;
+    let result = todotext.strike();
+    document.getElementById("todoItem_" + item).innerHTML = result;
+
+    crossOffItemInLocalStorage(item);
+}
+
+//----------------------------------------------------------- Local Storage -----------------------------------------------------------
+function addItemToLocalStorageArray(text, itemCount) {
     console.log("addItemToLocalStorageArray " + text);
 
     const itemsArray = JSON.parse(localStorage.getItem("items")) || [];
     const todoItem = {
+        id: itemCount,
         text: text,
+        strike: 0,
     };
     itemsArray.push(todoItem);
     localStorage.setItem("items", JSON.stringify(itemsArray));
@@ -63,76 +84,46 @@ function addItemToLocalStorageArray(text) {
 
 function removeItemInLocalStorageArray(text) {
     console.log("removeItemInLocalStorageArray " + text);
-
-    console.log("addItemToLocalStorageArray " + text);
-
     const itemsArray = JSON.parse(localStorage.getItem("items")) || [];
-    const todoItem = {
-        text: text,
-    };
+    // const todoItem = {
+    //     text: text,
+    //     strike: 0,
+    // };
     let i = 0;
     itemsArray.forEach((item) => {
-        if (item.text == text) {
+        if (item.text === text) {
             itemsArray.splice(i, 1);
         }
         i++;
+        // itemCount = i;
     });
     localStorage.setItem("items", JSON.stringify(itemsArray));
 }
 
-function crossOffItem(item) {
-    console.log("crossOffItem " + item);
-
-    let todotext = document.getElementById("todoItem_" + item).innerText;
-    let result = todotext.strike();
-    document.getElementById("todoItem_" + item).innerHTML = result;
-    addItemToLocalStorageArray(todotext);
+function crossOffItemInLocalStorage(item) {
+    const itemsArray = JSON.parse(localStorage.getItem("items")) || [];
+    itemsArray[item].strike = 1;
+    localStorage.setItem("items", JSON.stringify(itemsArray));
 }
-
-//Handles the adding item when enter is pressed instead of the "Add" button
-let input = document.getElementById("todoitem-input");
-input.addEventListener("keyup", function (event) {
-    // Number 13 is the "Enter" key on the keyboard
-    if (event.keyCode === 13) {
-        // Cancel the default action, if needed
-        event.preventDefault();
-        addItem();
-    }
-});
 
 function retreiveLocalStorage() {
     const data_items = JSON.parse(localStorage.getItem("items"));
     data_items.forEach((item) => {
         console.log(item.text);
         addItemToVolatileMemory(item.text);
+        crossOffItemInVolatileMemory;
     });
 }
 
-//All of these functions are bad.
-function getItemId(item) {
-    console.log("getItemID!");
-    return item.slice(9, 19);
-}
-function getItemOnClick(item) {
-    console.log("getItemOnClick!");
-    return item.slice(30, 45);
-}
-function getItemValue(item) {
-    let startVar = item.search(">");
-    let endVar = item.search("</div>");
-    return item.slice(startVar + 1, endVar);
-}
-function getItemStrikeValue(item) {
-    let startVar = item.search("<strike>");
-    let endVar = item.search("</strike>");
-    return item.slice(startVar + 8, endVar);
-}
-function getButtonId(item) {
-    return item.slice(7, 15);
-}
-function getButtonOnclick(item) {
-    return item.slice(26, 39);
-}
+let input = document.getElementById("todoitem-input");
+input.addEventListener("keyup", function (event) {
+    // Number 13 is the "Enter" key on the keyboard
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        addItem();
+    }
+});
+
 $(document).ready(function () {
     $("#saveLocalStorage").click(function () {
         bLocalStorage = true;
@@ -144,6 +135,7 @@ $(document).ready(function () {
         localStorage.clear();
     });
 });
+
 window.onload = function () {
     bLocalStorage = localStorage.getItem("storage");
     if (bLocalStorage) {

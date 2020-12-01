@@ -9,11 +9,11 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
 
-      <link rel="stylesheet" href="./res/styles/style.css">
+      <link rel="stylesheet" href="./style.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
     </head>
-  <body style="background-color: aqua;">
+  <body>
 
     <nav class="navbar navbar-expand-xl">    
       <div class="dropdown">
@@ -26,58 +26,29 @@
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item">
-                  <input type="radio" name="rad" id="saveLocalStorage">
+                  <input type="radio" name="rad" id="save">
                   <label for="saveLocalStorage">Save List</label>
               </a>
               <a class="dropdown-item">
-                  <input type="radio" name="rad" id="noSave">
+                  <input type="radio" name="rad" id="no-save">
                   <label for="noSave">No Save</label>
               </a> 
           </div>
       </div>
   </nav>
 
-  <!-- checked="checked" data-waschecked="true"  -->
 
-    <div class="title-wrapper" >
-      <div>
-        <h1>to-do</h1>
-      </div>
-    </div>
+    <h1>To-Do</h1>
 
-    <div class="input-wrapper">
+    <section id="input-wrapper">
+      <input type="text" id="todo-text-input" placeholder="Drink your tea!">
+      <button>Add</button>
+    </section>
+     
+    <ul id="todo-list">
 
-        <div></div>
-
-        <div></div>
-
-        <div>
-          <input class="todoitem" type="text" id="todoitem-input" placeholder="Drink your tea!">
-        </div>
-
-        <div>
-            <button class="todoitem_button" onclick="addItem()">Add</button>
-        </div>
-
-        <div></div>
-
-    </div>
+    </ul>
     
-    <div class="list-wrapper" id="listwrapper">
-
-      <div></div>
-      <div></div>
-
-      <div id = "todo-list-item">
-       
-      </div>
-
-      <div id = "todo-item-button"></div>
-
-      <div></div>
-
-    </div>
-    
-    <script type="text/javascript" src="./res/js/index.js"></script>
+    <script type="text/javascript" src="./index.js"></script>
   </body>
 </html>
